@@ -31,17 +31,16 @@ end
 
 def init_twilio
   account_sid = 'your_twilio_sid'
-  auth_token = 'your_twilio_auth_token'
+  auth_token = 'your_twilio_token'
 
   # set up a client to talk to the Twilio REST API
   @client = Twilio::REST::Client.new account_sid, auth_token
 end
 
 def send_sms(alert)
-  # binding.pry
   @client.account.messages.create({
-    :from => 'twilio number',
-    :to => 'your phone number',
+    :from => 'twilio_num',
+    :to => 'your_num',
     :body => 'red alert mofo!!!',
   })
 rescue => e
