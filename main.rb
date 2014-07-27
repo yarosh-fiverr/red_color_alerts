@@ -30,8 +30,8 @@ def log(level, msg)
 end
 
 def init_twilio
-  account_sid = 'AC85ec3f804a91244129fcb9651dc0c35d'
-  auth_token = '20f38cc2e08fe0f679607d1b104fd7d2'
+  account_sid = ''
+  auth_token = ''
 
   # set up a client to talk to the Twilio REST API
   @client = Twilio::REST::Client.new account_sid, auth_token
@@ -40,9 +40,9 @@ end
 def send_sms(alert)
   # binding.pry
   @client.account.messages.create({
-    :from => '+1(720) 961-2140',
-    :to => '+972544491208',
-    :body => 'Tikush',
+    :from => '',
+    :to => '',
+    :body => '',
     # :body => alert,
   })
 rescue => e

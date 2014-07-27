@@ -12,3 +12,5 @@
 /tmp
 .DS_Store
 nohup.out
+twilio.txt
+sms.txt
