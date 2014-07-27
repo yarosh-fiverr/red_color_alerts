@@ -8,7 +8,7 @@ require 'bundler'
 Bundler.require
 
 ALERTS_URL = 'http://www.oref.org.il/WarningMessages/alerts.json'
-DAN = 157
+ALERT_AREA = 157
 DEFAULT_SLEEP_INTERVAL = 3 # one second
 LONG_SLEEP_INTERVAL = 300 # five minutes
 
@@ -30,8 +30,8 @@ def log(level, msg)
 end
 
 def init_twilio
-  account_sid = ''
-  auth_token = ''
+  account_sid = 'your_twilio_sid'
+  auth_token = 'your_twilio_auth_token'
 
   # set up a client to talk to the Twilio REST API
   @client = Twilio::REST::Client.new account_sid, auth_token
@@ -40,10 +40,9 @@ end
 def send_sms(alert)
   # binding.pry
   @client.account.messages.create({
-    :from => '',
-    :to => '',
-    :body => '',
-    # :body => alert,
+    :from => 'twilio number',
+    :to => 'your phone number',
+    :body => 'red alert mofo!!!',
   })
 rescue => e
   log(:error, e.message << e.backtrace.inspect)
@@ -73,7 +72,7 @@ def main
     # alerts = ['157 גשדכגדג']
     alerts.each do |alert|
       log(:info, alerts)
-      next unless alert.include?(DAN.to_s)
+      next unless alert.include?(ALERT_AREA.to_s)
       send_sms(alert)
       # log(:info, res)
       sleep_interval = LONG_SLEEP_INTERVAL
